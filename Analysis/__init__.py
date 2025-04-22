@@ -12,3 +12,4 @@ from .CheckSuperimposion import CheckSuperimposion
 from .ReGeocoding import ReGeocoding
 from .RGB2HSI import *
 from .HSI2RGB import *
+from .ts_interpolation import *
