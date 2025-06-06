@@ -9,3 +9,9 @@ from .Bin2Cont import osero
 from .MethodOfNDVI_GSI import *
 from .SizeFilter import *
 from .CheckSuperimposion import CheckSuperimposion
+from .ReGeocoding import ReGeocoding
+from .RGB2HSI import *
+from .HSI2RGB import *
+from .ts_interpolation import *
+from .Gamma_correction import *
+from Pansharpen import *

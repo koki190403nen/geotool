@@ -2,8 +2,11 @@
 # -*- coding: utf-8 -*-
 # ras2vec.py: ラスターデータをベクターに変換する
 
+import os
 from osgeo import gdal, ogr, osr
 def ras2vec(input_path=None, output_path=None, gdal_src=None):
+    if os.path.exists(output_path):
+        os.remove(output_path)
     if input_path is not None:
         src = gdal.Open(input_path)
     elif gdal_src is not None:
@@ -17,7 +20,7 @@ def ras2vec(input_path=None, output_path=None, gdal_src=None):
     dst_ref.ImportFromWkt(src_ref)
 
     dst_ds = dst_driver.CreateDataSource(output_path)
-    dst_layer = dst_ds.CreateLayer('outputlayer', srs=dst_ref)
+    dst_layer = dst_ds.CreateLayer('DN', srs=dst_ref)
 
     fld = ogr.FieldDefn('DN', ogr.OFTInteger)
     dst_layer.CreateField(fld)
