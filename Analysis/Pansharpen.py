@@ -4,19 +4,7 @@
 
 # %%
 import numpy as np
-from matplotlib import pyplot as plt
-import pandas as pd
-from osgeo import gdal
-import geopandas as gpd
 import cv2
-from geotool.Convert import arr2tif
-
-# %%
-SPOT_MS_src = gdal.Open(F'L:/■2024/DS25T5005_金沢市_金沢市宅地造成及び特定盛土等規制法に基づく既存盛土等調査業務委託/05_業務実施/GISデータ/SPOT解析/衛星画像_解析用/SPOT_201509.tif')
-SPOT_MS_img = SPOT_MS_src.ReadAsArray()
-
-SPOT_PC_src = gdal.Open(F'L:/■2024/DS25T5005_金沢市_金沢市宅地造成及び特定盛土等規制法に基づく既存盛土等調査業務委託/05_業務実施/GISデータ/SPOT解析/衛星画像_パンクロ/SPOT_P_201509.tif')
-SPOT_PC_img = SPOT_PC_src.ReadAsArray()
 
 # %%
 def transform_uint8_img(src_img, vmin=None, vmax=None):
