@@ -16,10 +16,6 @@ def ts_interpolation(sokuryo_Zs, sokuryo_dates_all, sar_date):
     
     sokuryo_dates_used = sokuryo_dates_all[~np.isnan(sokuryo_Zs)]  # 実際に対象地点で測量した日付
     dates_diff_SOKURYOvSAR = (sokuryo_dates_used - sar_date).days  # 各測量日とSAR観測日との日数
-<<<<<<< HEAD
-
-=======
->>>>>>> 9d2ff54471101d6f2d3cbde6db8dc3044edb4513
     pre_sokuryo_date  = sokuryo_dates_used[dates_diff_SOKURYOvSAR==np.nanmax(dates_diff_SOKURYOvSAR[dates_diff_SOKURYOvSAR<0])][0]  # SAR観測日の直前の測量日
     post_sokuryo_date = sokuryo_dates_used[dates_diff_SOKURYOvSAR==np.nanmin(dates_diff_SOKURYOvSAR[dates_diff_SOKURYOvSAR>=0])][0]  # SAR観測日の直後の測量日
 
