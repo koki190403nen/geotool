@@ -3,7 +3,7 @@
 # Gamma_correction.py: ガンマ補正を行う
 import numpy as np
 
-def Gamma_correction(src, gamma=1):
+def gamma_correction(src, gamma=1):
     """ガンマ補正を行う関数
 
     Args:

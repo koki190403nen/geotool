@@ -16,7 +16,7 @@ def transform_uint8_img(src_img, vmin=None, vmax=None):
 
     return ((src_img.astype(np.float32)-vmin) / (vmax-vmin)*255).astype(np.uint8)
 
-def Pansharpen(MS_img, PC_img):
+def pansharpened(MS_img, PC_img):
     """パンシャープン化ツール
 
     Args:
