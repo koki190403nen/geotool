@@ -2,6 +2,7 @@ from . import Convert
 from . import Analysis
 from . import Smoothing
 from . import Radiation
+from . import LIANA_Expansion
 from .Statistics import PiecewiseRegression
 from .Analysis import GetNDVIArr
 from .Analysis import Bin2Cont
