@@ -57,7 +57,8 @@ class AdjustSizeOfImages:
         epsgs   = []
         for path in src_pathes:
             src = gdal.Open(path)
-            h,w = [src.ReadAsArray().shape[i] for i in [-2,-1]]
+            h = src.RasterYSize
+            w = src.RasterXSize
             self.shapes.append([h,w])
             extents.append(geotrans2extent(src.GetGeoTransform(), h,w))
 
@@ -100,7 +101,7 @@ class AdjustSizeOfImages:
             if working_img.ndim==3:
                 out_img_ls = []
                 for c in range(working_img.shape[0]):
-                    out_img_ls.append(cv2.resize(working_img[c,:,:], dsize=list(out_shapes), interpolation=kernel))
+                    out_img_ls.append(cv2.resize(working_img[c,:,:], dsize=list(out_shapes)[::-1], interpolation=kernel))
                 out_img = np.array(out_img_ls).transpose((1,2,0))
             elif working_img.ndim==2:
                 out_img = cv2.resize(working_img, dsize=list(out_shapes), interpolation=kernel)

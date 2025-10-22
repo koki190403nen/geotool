@@ -7,11 +7,9 @@ import geopandas as gpd
 import cv2, glob, os
 
 if __name__== '__main__':
-    from ..Convert import arr2tif, geotrans2extent, vec2ras
-    from ..Preprocessing import AdjustSizeOfImages
+    from Convert import arr2tif, vec2ras
 else:
-    from Convert import arr2tif, geotrans2extent, vec2ras
-    from Preprocessing import AdjustSizeOfImages
+    from ..Convert import arr2tif, vec2ras
 
 # %%
 class NDVI_GSI_Binarization:
@@ -33,7 +31,7 @@ class NDVI_GSI_Binarization:
             self,
             src_sat_path,
             dst_ndvi_path=None, dst_gsi_path=None, dst_ndvi_bin_path=None, dst_gsi_bin_path=None,
-            band_composition=[], teacher=None, hist=False
+            band_composition=[], teacher=None, hist=False, hist_title=None
             ):
         """fit関数
 
@@ -46,6 +44,7 @@ class NDVI_GSI_Binarization:
             band_composition (list, optional)       : 各波長帯が保存されているチャンネル番号. 0スタート.. Defaults to [].
             teacher (str:path,vector or list[int,int], optional)  : 閾値決定のための教師情報。パスが入力された場合はベクター範囲の画像から自動算出される. Defaults to None.
             hist (bool, optional)                   : 二値化時の閾値を可視化するための設定.
+            hist_title (str)                        : ヒストグラムのタイトル
 
         Returns:
             _type_: _description_
@@ -55,8 +54,8 @@ class NDVI_GSI_Binarization:
 
         if type(teacher)==str:
             self.extraction_teacher_mask(teacher_vector_path=teacher)
-            ndvi_threshold = self.calc_threshold(src_img=self.ndvi_img, hist=hist, title='NDVI')
-            gsi_threshold  = self.calc_threshold(src_img=self.gsi_img,  hist=hist, title='GSI')
+            ndvi_threshold = self.calc_threshold(src_img=self.ndvi_img, hist=hist, title=f'NDVI（{hist_title}）')
+            gsi_threshold  = self.calc_threshold(src_img=self.gsi_img,  hist=hist, title=f'GSI（{hist_title}）')
         else:
             ndvi_threshold, gsi_threshold = teacher
         
