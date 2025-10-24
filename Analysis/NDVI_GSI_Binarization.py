@@ -20,12 +20,16 @@ class NDVI_GSI_Binarization:
             sat_img: 入力した衛星画像のimgデータ
             ndvi_img: NDVI画像. (-1 ~ 1)
             gsi_img: GSI画像. (-1 ~ 1)
+            target_datasets : 閾値計算に用いたデータセット. (fit関数を実行した場合はNDVI, GSIの順で保存)
+            thresholds      : 求めた閾値. (fit関数を実行した場合はNDVI, GSIの順で保存)
         
         """
 
         os.makedirs('./working/', exist_ok=True)
         self.ndvi_img = None
         self.gsi_img  = None
+        self.datasets = []
+        self.thresholds = []
 
     def fit(
             self,
@@ -64,6 +68,8 @@ class NDVI_GSI_Binarization:
 
         for img, path in zip((self.ndvi_img, self.gsi_img, self.ndvi_bin_img, self.gsi_bin_img), (dst_ndvi_path, dst_gsi_path, dst_ndvi_bin_path, dst_gsi_bin_path)):
             arr2tif(img, path, geotrans=self.sat_src.GetGeoTransform(), projection=self.sat_src.GetProjection())
+
+        self.sat_src  # geotiffの開放
         return self
         
             
@@ -123,9 +129,16 @@ class NDVI_GSI_Binarization:
             _type_: _description_
         """
         target_dataset_float = src_img[self.teacher_mask_img==1]
+
+        self.datasets.append(target_dataset_float)
+        
+        # 大津の二値化
         target_dataset_int   = ((target_dataset_float - np.nanmin(target_dataset_float)) / (np.nanmax(target_dataset_float) - np.nanmin(target_dataset_float))  * 255).astype(np.uint8)
         thresh_int, _ = cv2.threshold(target_dataset_int, 0, 255, cv2.THRESH_OTSU)
         thresh = thresh_int/255 * (np.nanmax(target_dataset_float) - np.nanmin(target_dataset_float)) + np.nanmin(target_dataset_float)
+
+        
+        self.thresholds.append(thresh)
         if hist:
             plt.rcParams['font.family'] = 'Meiryo'
             plt.hist(target_dataset_float, bins=200)
