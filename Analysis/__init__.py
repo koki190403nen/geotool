@@ -16,8 +16,5 @@ from .ts_interpolation import *
 from .Gamma_correction import *
 from .Pansharpen import *
 from .AdjustBrightness import adjust_brightness
-<<<<<<< HEAD
 from .make_normal_vector import make_normal_vector
-=======
-from .NDVI_GSI_Binarization import *
->>>>>>> 7ca2d8bcfe739768f3057d613810df252a27bd65
+from .SurfaceElevatioin import surface_evaluation
