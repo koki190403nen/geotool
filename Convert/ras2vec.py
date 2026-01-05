@@ -5,6 +5,13 @@
 import os
 from osgeo import gdal, ogr, osr
 def ras2vec(input_path=None, output_path=None, gdal_src=None):
+    """ラスターをベクターに変換する
+
+    Args:
+        input_path (str: path): 入力するラスターのパス
+        output_path (str: path): 出力するベクターのパス
+        gdal_src (gdal.Dataset): 出力するときのsrc. Noneの時はinputのデータを使用する
+    """
     if os.path.exists(output_path):
         os.remove(output_path)
     if input_path is not None:

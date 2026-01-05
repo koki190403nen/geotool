@@ -4,6 +4,18 @@
 from osgeo import gdal
 
 def geotrans2extent(geotrans=None, h=None, w=None, path=None):
+    """gdal GeoTransformを matplotlib extent形式に変換する
+
+    Args:
+        geotrans (_type_, optional): _description_. Defaults to None.
+        h (_type_, optional): _description_. Defaults to None.
+        w (_type_, optional): _description_. Defaults to None.
+        path (_type_, optional): _description_. Defaults to None.
+
+    Returns:
+        extent: (x_min, x_max, y_min, y_max)
+    """
+
     if path is not None:
         src = gdal.Open(path)
         geotrans = src.GetGeoTransform()

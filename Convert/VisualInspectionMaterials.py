@@ -8,7 +8,10 @@ import tqdm
 import os, glob, shutil
 import pypdf
 
-from .geotrans2extent import geotrans2extent
+if __name__=='__main__':
+    from geotrans2extent import geotrans2extent
+else:
+    from .geotrans2extent import geotrans2extent
 import warnings;warnings.simplefilter('ignore')
 
 
