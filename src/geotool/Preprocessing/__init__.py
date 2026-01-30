@@ -1,0 +1,1 @@
+from .AdjustSizeOfImages import AdjustSizeOfImages

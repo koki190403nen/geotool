@@ -1,0 +1,37 @@
+[build-system]
+requires = ["setuptools>=61.0", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[tool.setuptools]
+package-dir = {"" = "src"}
+
+[tool.setuptools.packages.find]
+where = ["src"]
+include = ["geotool*"]
+exclude = ["tests*", "setup"]
+
+[project]
+name = "geotool"
+version = "0.1.0"
+description = "My python library for GIS"
+readme = "README.md"
+requires-python = ">=3.11"
+license = { text = "MIT" }
+authors = [{ name = "Koki UDA", email = "koki190403nen.3@gmail.com"}]
+dependencies = [
+    "ipykernel>=6.30.0",
+    "numpy>=1.26.4, <2",
+    "pandas>=2.3.1",
+    "matplotlib>=3.10.3",
+    "netCDF4>=1.7.2",
+    "rasterio>=1.4.3",
+    "geopandas>=1.1.1",
+    "tqdm>=4.67.1",
+    "pypdf>=5.8.0",
+    "gpxpy>=1.6.2",
+    "opencv-python",
+    "requests>=2.32.4",
+    "scipy>=1.16.0",
+    "scikit-learn>=1.7.1",
+    "statsmodels>=0.14.5"
+    ]
