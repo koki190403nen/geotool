@@ -13,3 +13,4 @@ from .CalcVelocityFromGeoDataFrame import CalcVelocityFromGeoDataFrame
 from .Gpx2GeoDataFrame import Gpx2GeoDataFrame
 from .vec2ras import vec2ras
 from .ras2vec import ras2vec
+from .tiling_satellite_img import tiling_satellite_img
