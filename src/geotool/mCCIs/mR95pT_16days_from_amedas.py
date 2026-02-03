@@ -1,9 +1,6 @@
 # %%
 import numpy as np
-from matplotlib import pyplot as plt
 import pandas as pd
-
-import json
 import datetime
 
 if __name__=='__main__':

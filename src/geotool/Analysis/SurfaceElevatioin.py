@@ -3,9 +3,7 @@
 # SurfaceElevation.py: 河川堤防評価の「面評価」を実施するための関数
 # %%
 import numpy as np
-from matplotlib import pyplot as plt
 import pandas as pd
-from osgeo import gdal
 import geopandas as gpd
 import glob, re
 from tqdm import tqdm
@@ -23,7 +21,7 @@ def surface_evaluation(liana_gdf, block_gdf, line_gdf, target_cols, max_distance
         desc (str): プログレスバーの先頭に表示する説明文字列
 
     Returns:
-        _type_: _description_
+        geopandas.GeoDataFrame: 累積変動量を追記した分割ブロックデータ
     """
     out_gdf = block_gdf.copy()
     temporary_ls = []

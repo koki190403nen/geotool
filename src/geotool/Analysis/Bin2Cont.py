@@ -1,5 +1,7 @@
 #/usr/bin/env python3
 # -*- coding: utf-8 -*-
+# Bin2Cont.py: バイナリの時系列配列を、1が何回連続したかに変換するクラス
+# %%
 import numpy as np
 
 class Bin2Cont:
@@ -17,13 +19,13 @@ class Bin2Cont:
         """
         self.in_arr =in_arr
 
-    def fit(self, in_arr=None):
+    def __call__(self, in_arr=None):
         if (self.in_arr is not None) & (in_arr is None):
             pass
         else:
             self.in_arr = in_arr
         self.calc_serial().calc_length().calc_inverse()
-        return self
+        return self.serial
 
     def calc_serial(self):
         """元の時系列を0,1,2,0,0,1,0のように変換する
@@ -59,7 +61,15 @@ class Bin2Cont:
         return self
     
 def osero(arr):
-    """バイナリデータで、前後が1で観測値が0の箇所を1に変換する"""
+    """_summary_
+
+    Args:
+        arr (_type_): _description_
+
+    Returns:
+        _type_: _description_
+    """
+
     out_ls = []
 
     for i, val in enumerate(arr):
@@ -71,3 +81,6 @@ def osero(arr):
             continue
         out_ls.append(val)
     return np.array(out_ls)
+# %%
+b2c = Bin2Cont()
+b2c([0,0,0,1,1,1,1,0,0,1,1])

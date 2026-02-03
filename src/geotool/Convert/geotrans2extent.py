@@ -7,13 +7,13 @@ def geotrans2extent(geotrans=None, h=None, w=None, path=None):
     """gdal GeoTransformを matplotlib extent形式に変換する
 
     Args:
-        geotrans (_type_, optional): _description_. Defaults to None.
-        h (_type_, optional): _description_. Defaults to None.
-        w (_type_, optional): _description_. Defaults to None.
-        path (_type_, optional): _description_. Defaults to None.
+        geotrans (list(float)): [x_min, x_d, _, y_max, _, y_d]. Defaults to None.
+        h (int): 画像サイズ(高さ). Defaults to None.
+        w (int): 画像サイズ(幅). Defaults to None.
+        path (str, path): 変換したいgeotiffのパス. None出ないとき、geotransを無視して変換. Defaults to None.
 
     Returns:
-        extent: (x_min, x_max, y_min, y_max)
+        list(float): (x_min, x_max, y_min, y_max)
     """
 
     if path is not None:

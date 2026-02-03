@@ -5,6 +5,14 @@
 import numpy as np
 
 def HSI2RGB(img):
+    """HSI画像をRGB画像に変換する関数
+
+    Args:
+        img (Array like, 3D): HSI画像
+
+    Returns:
+        numpy.ndarray: RGB画像(3D)
+    """
     H,S,I = [img[:,:,i] for i in range(3)]
     I = I/255
     H_dash = H/60

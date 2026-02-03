@@ -11,7 +11,7 @@ def ts_interpolation(sokuryo_Zs, sokuryo_dates_all, sar_date):
         sokuryo_dates_all (pd.TimeSeriesIndex): 測量日（実際には観測していない日も含むすべて）
         sar_date (pd.TimeSeriesIndex): SAR観測日
     Return:
-        SAR観測日における測量値(単位は入力値準拠)
+        numpy.ndarray (1D): SAR観測日における測量値(単位は入力値準拠)
     """
     
     sokuryo_dates_used = sokuryo_dates_all[~np.isnan(sokuryo_Zs)]  # 実際に対象地点で測量した日付

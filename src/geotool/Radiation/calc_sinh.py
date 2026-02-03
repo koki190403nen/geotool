@@ -3,7 +3,6 @@
 # calc_sinh.py: 指定緯度経度の指定日時のsinhを計算する
 # %%
 import numpy as np
-import datetime
 import pandas as pd
 # %%
 def calc_sinh(lat, lon, date:pd.Timestamp, Ls=135):

@@ -3,9 +3,7 @@
 # judge_crow.py: カラスがいるかどうか判定する
 
 # %%
-from turtle import circle
 import numpy as np
-from matplotlib import pyplot as plt
 import glob
 import cv2
 import threading

@@ -5,9 +5,7 @@
 # %%
 # SPIを計算する
 import numpy as np
-import pandas as pd
 from scipy import stats
-from matplotlib import pyplot as plt
 
 # %%
 # SPI-3を求める

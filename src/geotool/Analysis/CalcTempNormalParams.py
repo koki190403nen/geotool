@@ -3,12 +3,22 @@
 # CalcTempNormalParams.py: 気温の平年値パラメータを計算する
 #%%
 import numpy as np
-import pandas as pd
 
 def calc_temp_normal_params(
     temp1day_df,
     temp_element='MeanTEMP',
-    input_min_year=1991):
+    input_min_year=1991
+    ):
+    """ 気温の平年値パラメータの算出
+
+    Args:
+        temp1day_df (pandas.DataFrame): 1日ごとの気温が記載されたDataFrame
+        temp_element (str, optional): temp1day_dfのうち、平年値を求める列. Defaults to 'MeanTEMP'.
+        input_min_year (int, optional): 平年値算出の際の期間の最も古い年. Defaults to 1991.
+
+    Returns:
+        [float, float, int]: 各DOYの気温平均値, 各DOYの気温標準偏差, 各DOY
+    """
     # 処理
 
     mu_ls =[]

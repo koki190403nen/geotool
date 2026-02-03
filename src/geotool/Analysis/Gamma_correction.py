@@ -11,6 +11,6 @@ def gamma_correction(src, gamma=1):
         gamma (float, 0~1): ガンマ値. Defaults to 1.
 
     Returns:
-        Array like, 3D
+        Array like, 3D: ガンマ補正後の画像(dtype: uint8)
     """
     return (((src.astype(np.float32) / 255) ** (1/gamma)) * 255).astype(np.uint8)

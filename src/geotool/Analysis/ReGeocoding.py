@@ -4,12 +4,17 @@
 # %%
 import requests
 import pandas as pd
-import os
 from pathlib import Path
-def ReGeocoding(lat, lon, usr, passwd):
-    os.environ['http_proxy'] = f'http://{usr}:{passwd}@prtyo1.n-koei.co.jp:8080'
-    os.environ['https_proxy'] = f'http://{usr}:{passwd}@prtyo1.n-koei.co.jp:8080'
+def ReGeocoding(lat, lon):
+    """逆ジオコーディングする関数
 
+    Args:
+        lat (float): 緯度
+        lon (float): 経度
+
+    Returns:
+        [muniCd, pref, city, lv01Nm] : [muniコード, 都道府県名, 市町村名, 市町村より下の住所]
+    """
     muni_df = pd.read_csv(Path(__file__).resolve().parent.joinpath(f'./municode.csv'))
     res = requests.get(f'https://mreversegeocoder.gsi.go.jp/reverse-geocoder/LonLatToAddress?lat={lat}&lon={lon}')
     muniCd = int(res.json()['results']['muniCd'])

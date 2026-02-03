@@ -4,8 +4,6 @@
 
 # %%
 import numpy as np
-from matplotlib import pyplot as plt
-import pandas as pd
 from osgeo import gdal, osr
 import geopandas as gpd
 import cv2, glob, os

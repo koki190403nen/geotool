@@ -18,7 +18,10 @@ def vec2ras(in_vector_path, out_raster_path, attribute=None, geotrans=None, cols
         rows(int): 行数
         resolution (int): 出力ラスタの解像度. Defaults to None.
         nodata (int, optional): nodataの出力値. Defaults to -9999.
-        dtype (_type_, optional): 出力ラスタのデータタイプ. Defaults to np.int16.
+        dtype (type): 出力ラスタのデータタイプ. Defaults to np.int16.
+
+    Returns:
+        gdal.Dataset: 変換後のラスタ
     """
 
     # 出力元ベクタの読み込み

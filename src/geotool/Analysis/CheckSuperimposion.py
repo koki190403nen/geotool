@@ -4,13 +4,12 @@
 
 # %%
 import numpy as np
-from osgeo import gdal
+from osgeo import gdal, ogr
 import geopandas as gpd
 from ..Convert.vec2ras import vec2ras
 
 
 # %%
-from osgeo import ogr
 def CheckSuperimposion(ori_vec_path, com_vec_path, ori_id,  out_attribute='Superimposition', resolution=10, ori_nodata=-9999):
     """同じ座標系の2つのベクターデータの重畳を確認する
 
@@ -20,6 +19,8 @@ def CheckSuperimposion(ori_vec_path, com_vec_path, ori_id,  out_attribute='Super
         ori_id (_type_): オリジナルベクタのID属性名
         out_attribute (str, optional): 重畳有無を焼きこむ属性の値. Defaults to 'Superimposition'.
         resolution (int, optional): 解析解像度.単位は座標系を確認. Defaults to 10.
+    Return:
+        gpd.GeoDataFrame: 重畳の有無の列が追記されたベクタ（ori_vec_pathに追加）
     """
 
     # オリジナルのベクタをラスタに変換

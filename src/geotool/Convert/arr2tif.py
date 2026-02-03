@@ -4,7 +4,7 @@
 # ndarray -> Geotif 変換して保存する関数
 
 # %%
-from osgeo import gdal, ogr, osr, gdal_array
+from osgeo import gdal, osr, gdal_array
 import numpy as np
 # %%
 def arr2tif(
@@ -15,9 +15,9 @@ def arr2tif(
     """np.ndarrayをgeotiff形式で保存
 
     Args:
-        arr (np.ndarray): データセット本体.\n
-        out_file_path (str): 出力ファイルパス.\n
-        geotrans (set(lon, Δlon, 0, lat, 0, -Δlat)): 左上ピクセルの座標情報\n
+        arr (np.ndarray): データセット本体.
+        out_file_path (str): 出力ファイルパス.
+        geotrans (set(lon, Δlon, 0, lat, 0, -Δlat)): 左上ピクセルの座標情報
         projection (int or str): 座標系.int型ならEPSGコード,strならWktコード. Defaults to 4326.
     """
     

@@ -3,11 +3,9 @@
 # mR95pを計算するクラス
 
 # %%
-from operator import index
 import numpy as np
 import datetime
 import pandas as pd
-from matplotlib import pyplot as plt
 
 # %%
 # 各DOYごとにR95inを算出する

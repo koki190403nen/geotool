@@ -1,10 +1,12 @@
+#!/usr/bin/env python3
+# -*- coding: utf-8 -*-
+# NDVI_GSI_Binarization.py: NDV, GSI
 # %%
 import numpy as np
 from matplotlib import pyplot as plt
-import pandas as pd
 from osgeo import gdal, osr
 import geopandas as gpd
-import cv2, glob, os
+import cv2, os
 
 if __name__== '__main__':
     from Convert import arr2tif, vec2ras
@@ -20,8 +22,9 @@ class NDVI_GSI_Binarization:
             sat_img: 入力した衛星画像のimgデータ
             ndvi_img: NDVI画像. (-1 ~ 1)
             gsi_img: GSI画像. (-1 ~ 1)
-            target_datasets : 閾値計算に用いたデータセット. (fit関数を実行した場合はNDVI, GSIの順で保存)
             thresholds      : 求めた閾値. (fit関数を実行した場合はNDVI, GSIの順で保存)
+            ndvi_bin_img    : 算出したNDVIの二値化画像
+            gsi_bin_img     : 算出したGSIの二値化画像
         
         """
 
@@ -46,12 +49,10 @@ class NDVI_GSI_Binarization:
             dst_ndvi_bin_path (str: path, geotiff)  : 出力するNDVI二値化画像のパス. Defaults to None.
             dst_gsi_bin_path (str: path, geotiff))  : 出力するGSI二値化画像のパス. Defaults to None.
             band_composition (list, optional)       : 各波長帯が保存されているチャンネル番号. 0スタート.. Defaults to [].
-            teacher (str:path,vector or list[int,int], optional)  : 閾値決定のための教師情報。パスが入力された場合はベクター範囲の画像から自動算出される. Defaults to None.
+            teacher (str:path(vector) or list[float, float])  : 閾値決定のための教師情報。パスが入力された場合はベクター範囲の画像から自動算出される. 数値が入力された場合[NDVI_thresh, GSI_thresh]はその数値が閾値となる. Defaults to None.
             hist (bool, optional)                   : 二値化時の閾値を可視化するための設定.
             hist_title (str)                        : ヒストグラムのタイトル
 
-        Returns:
-            _type_: _description_
         """
 
         self.calc_ndvi_gsi(src_sat_path=src_sat_path, band_composition=band_composition)

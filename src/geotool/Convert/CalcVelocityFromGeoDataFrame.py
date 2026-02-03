@@ -5,11 +5,24 @@ import numpy as np
 import geopandas as gpd
 
 
-def CalcVelocityFromGeoDataFrame(gdf, epsg=6677):
+def CalcVelocityFromGeoDataFrame(gdf, epsg=None):
+    """GeoDataFrame（4次元：xyz+timestamp）から、速度を計算する
 
-    x = gdf.to_crs(epsg=epsg).geometry.x.values
-    y = gdf.to_crs(epsg=epsg).geometry.y.values
-    z = gdf.to_crs(epsg=epsg).geometry.z.values
+    Args:
+        gdf (geopandas.GeoDataFrame): xyz + timestampを持ったGeoDataFrame. geometryはPointZ, 属性に`time`を持つ
+        epsg (int): 座標系. Defaults to None.
+
+    Returns:
+        geopandas.GeoDataFrame: input(gdf)に速度列を追記
+    """
+    if epsg is None:
+        x = gdf.geometry.x.values
+        y = gdf.geometry.y.values
+        z = gdf.geometry.z.values
+    else:
+        x = gdf.to_crs(epsg=epsg).geometry.x.values
+        y = gdf.to_crs(epsg=epsg).geometry.y.values
+        z = gdf.to_crs(epsg=epsg).geometry.z.values
     t = gdf['time']
 
     x_diff = np.diff(x, prepend=x[0])

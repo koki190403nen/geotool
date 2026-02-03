@@ -8,6 +8,16 @@ import cv2
 
 # %%
 def transform_uint8_img(src_img, vmin=None, vmax=None):
+    """8bit以上の画像を8bit画像に変換する関数
+
+    Args:
+        src_img (Array like, 2D): 8bit より大きい画像。1ch
+        vmin (float): 画素値の上限（色調調整用） Defaults to None.
+        vmax (float): 画素値の上限（色調調整用） Defaults to None.
+
+    Returns:
+        Array like, 2D: 8bit画像. 1ch
+    """
     if vmin is None:
         vmin = np.nanmin(src_img.flatten())
     

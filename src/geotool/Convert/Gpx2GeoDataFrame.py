@@ -6,10 +6,19 @@ import geopandas as gpd
 import gpxpy
 import shapely
 
-def Gpx2GeoDataFrame(in_file_path, epsg=4326):
+def Gpx2GeoDataFrame(src_path, epsg=4326):
+    """GPXファイルをGeoDataFrame形式に変換する
+
+    Args:
+        src_path (str, path): 変換元gpxファイルパス
+        epsg (int)          : 座標系(epsg). Defaults to 4326.
+
+    Returns:
+        geopandas.GeoDataFrame: gpxを変換したGeoDataFrame.
+    """
 
     gdf = gpd.GeoDataFrame()
-    with open(f'./Log20241003-164559.gpx', 'r') as f:
+    with open(src_path, 'r') as f:
         gpx = gpxpy.parse(f)
 
     for track in gpx.tracks:

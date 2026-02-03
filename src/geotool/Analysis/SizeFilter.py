@@ -11,6 +11,9 @@ def SizeFilter(img, lower_size, upper_size=np.inf):
         img (Array like): 2次元画像(numpy array)。バイナリ形式
         lower_size (int): lower_size以上のピクセル数が固まっている群を抽出する
         upper_size (float): upper_size以下のピクセル数が固まっている群を抽出する. Defaults: np.inf（上限なし）
+    
+    Returns:
+        Array like, 2D: 一定以上の面積のピクセル群
     """
 
     img = img.astype(np.uint8)

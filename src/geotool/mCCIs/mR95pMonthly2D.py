@@ -3,7 +3,6 @@
 # mR95pMonthly2D: 月次mR95pの2Dを計算する.
 # %%
 import numpy as np
-from matplotlib import pyplot as plt
 import pandas as pd
 import datetime
 

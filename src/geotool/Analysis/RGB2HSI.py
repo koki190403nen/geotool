@@ -7,6 +7,9 @@ def RGB2HSI(img):
 
     Args:
         img (Array like, 3D): shape=(h,w,c)のimage.c=[R,G,B]
+    
+    Returns:
+        Array like, 3D: HSI画像
     """
 
     R,G,B = [img[:,:,i].astype(np.float32) for i in range(3)]
