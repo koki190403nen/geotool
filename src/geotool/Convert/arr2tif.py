@@ -14,6 +14,7 @@ def arr2tif(
     geotrans: tuple[float, ...] = (-20, 0.05, 0, 40, 0, -0.05),
     projection: int | str = 4326,
     band_descriptions: list[str] | dict[int, str] | None = None,
+    noband: float | int | None = None,
     ) -> None:
     """np.ndarrayをgeotiff形式で保存
 
@@ -26,6 +27,7 @@ def arr2tif(
             list の場合はインデックス順に設定（リスト長がバンド数より短い場合は該当バンドのみ設定）.
             dict の場合はキーをバンド番号（1始まり）として設定.
             None の場合は何もしない. Defaults to None.
+        noband (float | int | None): NoData値. 全バンドに同じ値を設定する. None の場合は設定しない. Defaults to None.
     """
     # arrが2D or 3Dかチェック
     if arr.ndim not in (2, 3):
@@ -56,6 +58,8 @@ def arr2tif(
     for i in range(n_bands):
         outband = outRaster.GetRasterBand(i + 1)
         outband.WriteArray(_arr[:, :, i])
+        if noband is not None:
+            outband.SetNoDataValue(noband)
         # descriptionsがある場合は、追記する
         if band_descriptions is not None:
             if isinstance(band_descriptions, list) and i < len(band_descriptions):
